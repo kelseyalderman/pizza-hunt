@@ -5,9 +5,14 @@ const PizzaSchema = new Schema(
   {
     pizzaName: {
       type: String,
+      // can use "true" or a custom error message
+      required: "You need to provide a pizze name!",
+      trim: true,
     },
     createdBy: {
       type: String,
+      required: true,
+      trim: true,
     },
     createdAt: {
       type: Date,
@@ -16,6 +21,9 @@ const PizzaSchema = new Schema(
     },
     size: {
       type: String,
+      // cannot use a custom error message with enumerable values
+      required: true,
+      enum: ["Personal", "Small", "Medium", "Large", "Extra Large"],
       default: "Large",
     },
     toppings: [],
